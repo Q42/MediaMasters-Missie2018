@@ -5,12 +5,13 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "deploy": "vue-cli-service build && firebase deploy",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "deploy": "vue-cli-service build && firebase deploy"
   },
   "dependencies": {
     "useragent": "^2.3.0",
-    "vue": "^2.5.17"
+    "vue": "^2.5.17",
+    "vue-router": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
@@ -18,8 +19,8 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
     "request": "^2.88.0",
-    "yamlparser": "0.0.2",
-    "vue-template-compiler": "^2.5.17"
+    "vue-template-compiler": "^2.5.17",
+    "yamlparser": "0.0.2"
   },
   "eslintConfig": {
     "root": true,

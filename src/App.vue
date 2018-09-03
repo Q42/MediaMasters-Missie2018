@@ -1,19 +1,8 @@
 <template>
   <div id="app">
-    <CookieExplanation />
+    <router-view/>
   </div>
 </template>
-
-<script>
-import CookieExplanation from './components/CookieExplanation.vue'
-
-export default {
-  name: 'app',
-  components: {
-    CookieExplanation
-  }
-}
-</script>
 
 <style>
 html, body {
@@ -27,7 +16,8 @@ body::after {
   background-image: url('./assets/cookie-1.png');
   background-repeat: no-repeat;
   background-size: contain;
-  opacity: 0.3;
+  background-attachment: fixed;
+  opacity: 0.1;
   position:absolute;
   top:0; left: 0; bottom: 0; right: 0;
   z-index: -1;
