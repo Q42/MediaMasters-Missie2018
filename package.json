@@ -9,6 +9,7 @@
     "deploy": "vue-cli-service build && firebase deploy"
   },
   "dependencies": {
+    "js-cookie": "^2.2.0",
     "useragent": "^2.3.0",
     "vue": "^2.5.17",
     "vue-router": "^3.0.1"

@@ -14,3 +14,9 @@ npm run serve
 ```
 npm run deploy
 ```
+
+## TODO
+
+* foutmelding als je op je telefoon of tablet opent
+* foutmelding als cookies uit staan
+* 

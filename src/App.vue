@@ -1,8 +1,24 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view />
   </div>
 </template>
+
+<script>
+var Cookies = require('js-cookie');
+
+export default {
+  data() {
+    return {
+    }
+  },
+  created() {
+    if (!Cookies.get('color')) {
+      Cookies.set('color', 'white', {expires: 365});
+    }
+  }
+}
+</script>
 
 <style>
 html, body {
