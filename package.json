@@ -9,12 +9,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "useragent": "^2.3.0",
     "vue": "^2.5.17"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
     "@vue/cli-plugin-babel": "^3.0.1",
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
+    "request": "^2.88.0",
+    "yamlparser": "0.0.2",
     "vue-template-compiler": "^2.5.17"
   },
   "eslintConfig": {
