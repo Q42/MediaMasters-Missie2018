@@ -2,6 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import CookieExplanation from './components/CookieExplanation.vue'
 import ViewCookies from './components/ViewCookies.vue'
+import Intro from './components/Intro.vue'
+import Tracking from './components/Tracking.vue'
 
 Vue.use(Router)
 
@@ -11,11 +13,19 @@ export default new Router({
   routes: [
     {
       path: '/',
+      component: Intro
+    },
+    {
+      path: '/stap1',
       component: CookieExplanation
     },
     {
       path: '/stap2',
       component: ViewCookies
+    },
+    {
+      path: '/stap3',
+      component: Tracking
     },
   ],
   scrollBehavior: (to, from, savedPosition) => {

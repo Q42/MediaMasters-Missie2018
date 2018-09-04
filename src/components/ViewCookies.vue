@@ -18,7 +18,7 @@
         <li>Ga naar de tab "Storage" of "Opslag"
           <img src="../assets/firefox-2.png" /></li>
         <li>Kies links voor "Cookies", klap die uit, en kies voor "cookies.futurenl.org"</li>
-        <li>Als het goed is zie je nu twee Cookies staan: 'color' en 'name'</li>
+        <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
       <ul v-else-if="browser.chrome">
         <li>Open het menu rechtsboven, kies voor "More Tools" en dan "Developer Tools"<br />
@@ -40,7 +40,14 @@
       </ul>
 
       <h2>Cookies aanpassen</h2>
-      <p>Je kunt hier ook kies aanpassen. (Dubbel)klik maar eens op je naam, en typ iets anders. Als je daarna de pagina opnieuw laadt, dan zie je de nieuwe waarde.</p>
+      <p>Je kunt hier ook cookies aanpassen. (Dubbel)klik maar eens op je naam (<code>{{name}}</code>), en typ iets anders.</p>
+      <p>Als je daarna de pagina opnieuw laadt (<a @click="reload"><img class="img-reload" src="../assets/reload.png" /></a>), dan zie je de nieuwe waarde.</p>
+
+      <h2>Vraag!</h2>
+      <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
+      <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
+
+      <router-link class="cta" to="/stap3">Stap 3: Tracking</router-link>
 
     </div>
   </div>
@@ -74,6 +81,9 @@ export default {
     submitName() {
       Cookies.set('name', this.tempName, {expires: 365});
       window.location.reload();
+    },
+    reload() {
+      window.location.reload();
     }
   },
   created() {
@@ -90,5 +100,8 @@ export default {
 img {
   width: 100%;
   max-width: 500px;
+}
+.img-reload {
+  width: 16px;
 }
 </style>

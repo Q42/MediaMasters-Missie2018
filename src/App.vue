@@ -1,6 +1,8 @@
 <template>
-  <div id="app">
-    <router-view />
+  <div id="app" :style="{ color: color}">
+    <section id="content">
+      <router-view />
+    </section>
   </div>
 </template>
 
@@ -10,12 +12,14 @@ var Cookies = require('js-cookie');
 export default {
   data() {
     return {
+      color: 'black',
     }
   },
   created() {
     if (!Cookies.get('color')) {
-      Cookies.set('color', 'white', {expires: 365});
+      Cookies.set('color', 'black', {expires: 365});
     }
+    this.color = Cookies.get('color') || 'black';
   }
 }
 </script>
@@ -29,6 +33,7 @@ html, body {
 }
 body::after {
   content: "";
+  background-color: #F1F1F1;
   background-image: url('./assets/cookie-1.png');
   background-repeat: no-repeat;
   background-size: contain;
@@ -42,6 +47,14 @@ body::after {
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   color: #2c3e50;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+}
+#content {
   margin: 4em;
 }
+
 </style>
