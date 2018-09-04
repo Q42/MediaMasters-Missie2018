@@ -1,0 +1,23 @@
+<template>
+  <div>
+    <h1>Banners</h1>
+    <p>Je kent ze inmiddels wel, bij veel websites word je gevraagd of je Cookies wilt.</p>
+    <p>En vaak mag je daar geen Nee tegen zeggen...</p>
+    <p>Dat is natuurlijk omdat cookies wel nodig zijn om in te loggen. Dit zijn "functionele cookies".</p>
+    <p>Maar tegelijkertijd wil je misschien niet dat bijv Google en Facebook precies weten waar jij geweest bent. In sommige gevallen kun je "tracking" of "advertentie" cookies uit zetten.</p>    
+    <p>Kijk bijvoorbeeld eens naar het <a href="https://www.ad.nl/info" target="_blank">cookie beleid van AD.nl</a> (van het Algemeen Dagblad, een grote krant), en specifiek naar de tabellen die daar op staan. Best eng hoeveel verschillende partijen weten dat je op ad.nl geweest bent...</p>
+
+    <p>Sommige websites (zoals ad.nl) verplichten je om alle cookies te accepteren. Op de volgende pagina gaan we eens kijken wat we daar toch tegen kunnen doen.</p>
+
+    <router-link class="cta" to="/stap6">Stap 6: Wat kun je hier tegen doen?</router-link>
+  </div>
+</template>
+
+<script>
+
+export default {
+  created() {
+    
+  }
+}
+</script>

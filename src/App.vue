@@ -7,6 +7,8 @@
 </template>
 
 <script>
+import 'promise-polyfill/src/polyfill';
+import 'whatwg-fetch';
 var Cookies = require('js-cookie');
 
 export default {

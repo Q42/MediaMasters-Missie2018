@@ -1,0 +1,47 @@
+<template>
+  <div>
+    <h1>Wat weet een website over jou?</h1>
+    <p>Deze informatie stuur jij naar elke website die je bezoekt:</p>
+    <ul>
+      <li v-for="d in data" :key="d">{{d}}</li>
+    </ul>
+
+    <router-link class="cta" to="/stap5">Stap 5: Cookie banners</router-link>
+  </div>
+</template>
+
+<script>
+var useragent = require('useragent');
+
+export default {  
+  data() {
+    return {
+      data: []
+    }
+  },
+  created() {
+    var dt = this.data;
+    const ua = useragent.parse(navigator.userAgent);
+    dt.push('Operating systeem: ' + ua.os.toString());
+    dt.push('Browser: ' + ua.toAgent());
+    // TODO get location from a POST to https://www.googleapis.com/geolocation/v1/geolocate?key=AIzaSyAGGcwb5hDw9YNIgw-l8LmrzAVpdQ3gqrs
+    // according to https://developers.google.com/maps/documentation/geolocation/intro
+
+    if (document.referrer) {
+      dt.push('Vorige website: ' + document.referrer);
+    }
+
+    if (typeof navigator.getBattery == "function") {
+      navigator.getBattery().then(r => {
+        if (r.level) {
+          dt.push('Batterij: ' + (r.level * 100) + '%');
+        }
+      })
+    }
+
+    window.fetch('https://api.ipify.org/?format=txt')
+      .then(r => r.text())
+      .then(ip => dt.push('Extern IP adres: ' + ip));
+  }
+}
+</script>
