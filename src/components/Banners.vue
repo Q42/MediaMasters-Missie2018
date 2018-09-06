@@ -9,15 +9,16 @@
 
     <p>Sommige websites (zoals ad.nl) verplichten je om alle cookies te accepteren. Op de volgende pagina gaan we eens kijken wat we daar toch tegen kunnen doen.</p>
 
-    <router-link class="cta" to="/stap6">Stap 6: Wat kun je hier tegen doen?</router-link>
+    <div class="cta-container">
+      <router-link class="cta" to="/stap6">
+        <img src="/images/arrow.svg" />
+      </router-link>
+    </div>
   </div>
 </template>
 
 <script>
-
 export default {
-  created() {
-    
-  }
-}
+  created() {}
+};
 </script>

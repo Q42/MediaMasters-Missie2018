@@ -47,7 +47,11 @@
       <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
       <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
 
-      <router-link class="cta" to="/stap3">Stap 3: Tracking</router-link>
+      <div class="cta-container">
+        <router-link class="cta" to="/stap3">
+          <img src="/images/arrow.svg" />
+        </router-link>
+      </div>
 
     </div>
   </div>
@@ -60,7 +64,7 @@ var useragent = require('useragent');
 export default {
   data() {
     return {
-      color: 'white',
+      color: 'black',
       tempName: null,
       name: null,
       browser: {
@@ -97,7 +101,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-img {
+ul img {
   width: 100%;
   max-width: 500px;
 }

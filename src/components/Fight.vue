@@ -16,7 +16,11 @@
     <p>Google krijgt ontzettend veel informatie over jou doordat je hun zoekmachine gebruikt.</p>
     <p>Probeer bijvoorbeeld eens <a href="https://duckduckgo.com/" target="_blank">duckduckgo.com</a>.</p>
 
-    <router-link class="cta" to="/einde">Laatste stap!</router-link>
+    <div class="cta-container">
+      <router-link class="cta" to="/einde">
+        <img src="/images/arrow.svg" />
+      </router-link>
+    </div>
   </div>
 </template>
 

@@ -6,7 +6,11 @@
       <li v-for="d in data" :key="d">{{d}}</li>
     </ul>
 
-    <router-link class="cta" to="/stap5">Stap 5: Cookie banners</router-link>
+    <div class="cta-container">
+      <router-link class="cta" to="/stap5">
+        <img src="/images/arrow.svg" />
+      </router-link>
+    </div>
   </div>
 </template>
 
