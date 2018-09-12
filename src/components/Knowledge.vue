@@ -16,6 +16,7 @@
 
 <script>
 var useragent = require('useragent');
+import { getIpAddress, getVisitsTotal, getVisitsByIp, getVisitsBySession } from '../firestore';
 
 export default {  
   data() {
@@ -42,10 +43,13 @@ export default {
         }
       })
     }
-
-    window.fetch('https://api.ipify.org/?format=txt')
-      .then(r => r.text())
+    
+    getIpAddress()
       .then(ip => dt.push('Extern IP adres: ' + ip));
+    
+    getVisitsBySession().then(count => dt.push('Bezoekers vanaf deze computer: ' + count));
+    getVisitsByIp().then(count => dt.push('Bezoekers vanaf dit ipadres: ' + count));
+    getVisitsTotal().then(count => dt.push('Totaal bezoekers: ' + count));
   }
 }
 </script>

@@ -10,6 +10,7 @@
 import 'promise-polyfill/src/polyfill';
 import 'whatwg-fetch';
 var Cookies = require('js-cookie');
+import { storeVisit } from './firestore';
 
 export default {
   data() {
@@ -22,6 +23,9 @@ export default {
       Cookies.set('color', 'black', {expires: 365});
     }
     this.color = Cookies.get('color') || 'black';
+    if (this.$route.path !== '/') {
+      storeVisit();
+    }
   }
 }
 </script>
