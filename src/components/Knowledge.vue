@@ -6,6 +6,16 @@
       <li v-for="d in data" :key="d">{{d}}</li>
     </ul>
 
+    <h2>IP adres?</h2>
+    <p>Zie je dat "IP adres" erbij staan? Dat is het adres van je internetverbinding, die meestal per huis of school is. Daar kan een website ook weer slimme dingen van weten! Je bent de {{visitsByIp}}e bezoeker vanaf dit IP adres. {{theory}}</p>
+
+    <h2>Cijfertjes</h2>
+    <ul>
+      <li>Het aantal bezoeken vanaf deze computer: {{visitsBySession}}</li>
+      <li>Unieke computers vanaf dit IP adres: {{visitsByIp}}</li>
+      <li>Unieke computers totaal: {{visitsTotal}}</li>
+    </ul>
+
     <div class="cta-container">
       <router-link class="cta" to="/stap5">
         <img src="/images/arrow.svg" />
@@ -21,7 +31,17 @@ import { getIpAddress, getVisitsTotal, getVisitsByIp, getVisitsBySession } from 
 export default {  
   data() {
     return {
-      data: []
+      data: [],
+      visitsBySession: null,
+      visitsByIp: null,
+      visitsTotal: null,
+    }
+  },
+  computed: {
+    theory() {
+      if (!this.visitsByIp) return null;
+      if (this.visitsByIp > 2) return "Conclusie: waarschijnlijk ben je nu thuis, anders had ik wel meer bezoekers vanaf dit IP adres gezien.";
+      return "Conclusie: waarschijnlijk ben je nu op school, want er zijn aardig wat bezoekers die vanaf dit IP adres komen!";
     }
   },
   created() {
@@ -45,11 +65,11 @@ export default {
     }
     
     getIpAddress()
-      .then(ip => dt.push('Extern IP adres: ' + ip));
+      .then(ip => dt.push('IP adres: ' + ip));
     
-    getVisitsBySession().then(count => dt.push('Bezoekers vanaf deze computer: ' + count));
-    getVisitsByIp().then(count => dt.push('Bezoekers vanaf dit ipadres: ' + count));
-    getVisitsTotal().then(count => dt.push('Totaal bezoekers: ' + count));
+    getVisitsBySession().then(count => this.visitsBySession = count+1);
+    getVisitsByIp().then(count => this.visitsByIp = count+1);
+    getVisitsTotal().then(count => this.visitsTotal = count+1);
   }
 }
 </script>

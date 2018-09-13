@@ -11,7 +11,7 @@
       <h2>Welkom {{name}}!</h2>
       <p>Deze website weet nu hoe je heet!</p>
       <p>Dat onthoudt hij, in een cookie. Nu weet je ook meteen waarom cookies zo handig zijn op het internet; ze bewaren wie er ingelogd is op een website.</p>
-      <p>Kom, we gaan de cookie eens bekijken. Dat werkt op elke browser weer net iets anders, maar voor de jouwe zou dit hem moeten zijn:</p>
+      <p>Kom, we gaan de cookie eens bekijken. Dat werkt op elke browser weer net iets anders. Gelukkig weet ik precies met welke browser je deze pagina bekijkt! Op jouw browser zou je op deze manier je cookies moeten kunnen bekijken:</p>
 
       <ul v-if="browser.mozilla">
         <li>Druk op <code>F12</code>. Het "Web Developer" paneel opent naast je website.</li>
@@ -21,17 +21,22 @@
         <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
       <ul v-else-if="browser.chrome">
-        <li>Open het menu rechtsboven, kies voor "More Tools" en dan "Developer Tools"<br />
+        <li>Open het menu rechtsboven, kies voor "Meer hulpprogramma's" en dan "Hulpprogramma's voor ontwikkelaars"<br />
         <img src="../assets/chrome-1.png" /></li>
-        <li>Ga naar de tab "Application" of "Applicatie"<br />
+        <li>Ga naar de tab "Application"<br />
         <img src="../assets/chrome-2.png" /></li>
         <li>Kies links voor "Cookies", klap die uit, en kies voor "cookies.futurenl.org"</li>
         <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
       <ul v-else-if="browser.safari">
-        <li>Open het menu rechtsboven, kies voor "More Tools" en dan "Developer Tools"<br />
-        <li>Ga naar de tab "Application" of "Applicatie"</li>
-        <li>Kies links voor "Cookies", klap die uit, en kies voor "cookies.futurenl.org"</li>
+        <li>Klik linksboven op "Safari" en dan op "Voorkeuren"<br />
+        <li>Zet het vinkje "Toon ontwikkel-menu in menubalk" aan<br />
+        <img src="../assets/safari-1.png" /></li>
+        <li>Nu is er bovenin het scherm en menu "Ontwikkel" bij gekomen. Klik daarop, en dan op "Toon javascript console"<br />
+        <img src="../assets/safari-2.png" /></li>
+        <li>Ga naar de tab "Opslag"<br />
+        <img src="../assets/safari-3.png" /></li>
+        <li>Kies links voor "Cookies - cookies.futurenl.org"</li>
         <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
       <ul v-else-if="browser.ie">
@@ -39,13 +44,19 @@
       <ul v-else>
       </ul>
 
-      <h2>Cookies aanpassen</h2>
-      <p>Je kunt hier ook cookies aanpassen. (Dubbel)klik maar eens op je naam (<code>{{name}}</code>), en typ iets anders.</p>
-      <p>Als je daarna de pagina opnieuw laadt (<a @click="reload"><img class="img-reload" src="../assets/reload.png" /></a>), dan zie je de nieuwe waarde.</p>
+      <div v-if="!browser.safari">
+        <h2>Cookies aanpassen</h2>
+        <p>Je kunt hier ook cookies aanpassen. (Dubbel)klik maar eens op je naam (<code>{{name}}</code>), en typ iets anders.</p>
+        <p>Als je daarna de pagina opnieuw laadt (<a @click="reload"><img class="img-reload" src="../assets/reload.png" /></a>), dan zie je de nieuwe waarde.</p>
 
-      <h2>Vraag!</h2>
-      <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
-      <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
+        <h2>Vraag!</h2>
+        <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
+        <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
+      </div>
+      <div v-else>
+        <h2>Gevonden!</h2>
+        <p>Nou, daar staan je cookies dus. Op deze manier kun je van elke website zien welke cookies hij allemaal op je computer achter laat.</p>
+      </div>
 
       <div class="cta-container">
         <router-link class="cta" to="/stap3">

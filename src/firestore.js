@@ -40,12 +40,17 @@ export function getSession() {
 }
 
 export function storeVisit() {
-  Promise.all([
-    upByOne(db.collection('visitsTotal').doc('total')),
-    getIpAddress().then(i => upByOne(db.collection('visitsByIp').doc(i))),
-    getSession().then(s => upByOne(db.collection('visitsBySession').doc(s)))
-  ])
-    .then(() => console.log('stored visits in firestore', ip, session))
+  getSession()
+    .then(s => upByOne(db.collection('visitsBySession').doc(s)))
+    .then(unique => {
+      if (unique)
+        return Promise.all([
+          getIpAddress().then(i => upByOne(db.collection('visitsByIp').doc(i))),
+          upByOne(db.collection('visitsTotal').doc('total')),
+        ]).then(() => unique);
+      return Promise.resolve(unique);
+    })
+    .then((unique) => console.log('stored visits in firestore', ip, session, unique ? 'unique visit' : 'return visit'))
     .catch((error) => console.error("Error storing visit in firestore: ", error));
 }
 
@@ -55,8 +60,10 @@ function upByOne(ref) {
       if (doc.exists) {
         const count = doc.data().count + 1;
         t.update(ref, { count, date: +Date.now() });
+        return false;
       } else {
         t.set(ref, { count: 1, date: +Date.now() });
+        return true;
       }
     })
   );
