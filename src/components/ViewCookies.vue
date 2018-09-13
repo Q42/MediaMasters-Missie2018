@@ -114,7 +114,7 @@ export default {
     this.name = Cookies.get('name');
 
     this.browser = useragent.is(navigator.userAgent);
-    console.log(this.browser);
+    console.log(useragent.is(navigator.userAgent));
 
     this.mobile = mobile();
   }
