@@ -13,9 +13,12 @@
       <p>Dat onthoudt hij, in een cookie. Nu weet je ook meteen waarom cookies zo handig zijn op het internet; ze bewaren wie er ingelogd is op een website.</p>
       <p>Kom, we gaan de cookie eens bekijken. Dat werkt op elke browser weer net iets anders. Gelukkig weet ik precies met welke browser je deze pagina bekijkt! Op jouw browser zou je op deze manier je cookies moeten kunnen bekijken:</p>
 
-      <ul v-if="browser.mozilla">
+      <p v-if="mobile || browser.android || browser.mobile_safari">
+        Uh-oh, je zit op een mobieltje of tablet! Daar is het niet mogelijk om de cookies te bekijken. Open deze website a.u.b. op een computer.
+      </p>
+      <ul v-else-if="browser.mozilla">
         <li>Druk op <code>F12</code>. Het "Web Developer" paneel opent naast je website.</li>
-        <li>Ga naar de tab "Storage" of "Opslag"
+        <li>Ga naar de tab "Storage"
           <img src="../assets/firefox-2.png" /></li>
         <li>Kies links voor "Cookies", klap die uit, en kies voor "cookies.futurenl.org"</li>
         <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
@@ -41,8 +44,11 @@
       </ul>
       <ul v-else-if="browser.ie">
       </ul>
-      <ul v-else>
+      <ul v-else-if="browser.edge">
       </ul>
+      <p v-else>
+        Uh-oh, je browser ken ik niet! 
+      </p>
 
       <div v-if="!browser.safari">
         <h2>Cookies aanpassen</h2>
@@ -53,12 +59,12 @@
         <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
         <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
       </div>
-      <div v-else>
+      <div v-else-if="!mobile">
         <h2>Gevonden!</h2>
         <p>Nou, daar staan je cookies dus. Op deze manier kun je van elke website zien welke cookies hij allemaal op je computer achter laat.</p>
       </div>
 
-      <div class="cta-container">
+      <div v-if="!mobile" class="cta-container">
         <router-link class="cta" to="/stap3">
           <img src="/images/arrow.svg" />
         </router-link>
@@ -71,6 +77,7 @@
 <script>
 var Cookies = require('js-cookie');
 var useragent = require('useragent');
+var mobile = require('is-mobile');
 
 export default {
   data() {
@@ -78,6 +85,7 @@ export default {
       color: 'black',
       tempName: null,
       name: null,
+      mobile: false,
       browser: {
         version: '1',
         webkit: false,
@@ -106,6 +114,9 @@ export default {
     this.name = Cookies.get('name');
 
     this.browser = useragent.is(navigator.userAgent);
+    console.log(this.browser);
+
+    this.mobile = mobile();
   }
 }
 </script>

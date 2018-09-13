@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "firebase": "^5.4.2",
+    "is-mobile": "^1.0.0",
     "js-cookie": "^2.2.0",
     "promise-polyfill": "8.1.0",
     "useragent": "^2.3.0",
