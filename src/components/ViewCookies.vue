@@ -14,7 +14,7 @@
       <p>Kom, we gaan de cookie eens bekijken. Dat werkt op elke browser weer net iets anders. Gelukkig weet ik precies met welke browser je deze pagina bekijkt! Op jouw browser zou je op deze manier je cookies moeten kunnen bekijken:</p>
 
       <p v-if="mobile || browser.android || browser.mobile_safari">
-        Uh-oh, je zit op een mobieltje of tablet! Daar is het niet mogelijk om de cookies te bekijken. Open deze website a.u.b. op een computer.
+        Uh-oh, je zit op een mobieltje, tablet! Daar is het niet mogelijk om de cookies te bekijken. Open deze website a.u.b. op een computer.
       </p>
       <ul v-else-if="browser.mozilla">
         <li>Druk op <code>F12</code>. Het "Web Developer" paneel opent naast je website.</li>
@@ -42,15 +42,18 @@
         <li>Kies links voor "Cookies - cookies.futurenl.org"</li>
         <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
-      <ul v-else-if="browser.ie">
-      </ul>
       <ul v-else-if="browser.edge">
+        <li>Druk op <code>F12</code>. Het "Web Developer" paneel opent naast je website.</li>
+        <li>Ga naar de tab "Debugger"<br />
+          <img src="../assets/edge-1.png" /></li>
+        <li>Kies links voor "Cookies", klap die uit, en kies de eerste pagina er onder</li>
+        <li>Als het goed is zie je nu een aantal Cookies staan, waaronder 'name'.</li>
       </ul>
       <p v-else>
-        Uh-oh, je browser ken ik niet! 
+        Uh-oh, je zit op een browser waar het niet mogelijk is om de cookies te bekijken. Open deze website a.u.b. met Chrome, Safari, Firefox of Edge.
       </p>
 
-      <div v-if="!browser.safari">
+      <div v-if="browser.mozilla || browser.chrome || browser.safari">
         <h2>Cookies aanpassen</h2>
         <p>Je kunt hier ook cookies aanpassen. (Dubbel)klik maar eens op je naam (<code>{{name}}</code>), en typ iets anders.</p>
         <p>Als je daarna de pagina opnieuw laadt (<a @click="reload"><img class="img-reload" src="../assets/reload.png" /></a>), dan zie je de nieuwe waarde.</p>
@@ -59,7 +62,7 @@
         <p>Kun je er achter komen waar de cookie "<code>color</code>" voor gebruikt wordt?</p>
         <p><i>Tip: Verander de waarde en herlaad de pagina, wat is er veranderd?</i></p>
       </div>
-      <div v-else-if="!mobile">
+      <div v-else-if="browser.mozilla || browser.chrome || browser.safari || browser.edge">
         <h2>Gevonden!</h2>
         <p>Nou, daar staan je cookies dus. Op deze manier kun je van elke website zien welke cookies hij allemaal op je computer achter laat.</p>
       </div>
@@ -91,6 +94,7 @@ export default {
         webkit: false,
         opera: false,
         ie: false,
+        edge: false,
         chrome: false,
         safari: false,
         mobile_safari: false,
@@ -114,7 +118,8 @@ export default {
     this.name = Cookies.get('name');
 
     this.browser = useragent.is(navigator.userAgent);
-    console.log(useragent.is(navigator.userAgent));
+    // this.browser.edge = true;
+    // console.log(useragent.is(navigator.userAgent));
 
     this.mobile = mobile();
   }
